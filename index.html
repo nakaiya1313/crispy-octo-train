@@ -36,8 +36,18 @@
   #message.placeholder{ color:var(--muted); font-weight:500; font-size:clamp(1rem,4vw,1.35rem) !important; }
   .tap-hint{ flex:0 0 auto; text-align:center; font-size:.75rem; color:var(--muted); margin:4px 0 0; }
 
-  .quick-head{ flex:0 0 auto; display:flex; align-items:center; padding:8px 14px 0; }
-  .quick-head span{ font-size:.85rem; color:var(--muted); font-weight:700; }
+  .rotate-tip{ flex:0 0 auto; margin:6px 14px 0; padding:10px 12px; background:var(--accent-soft);
+    color:var(--accent); border:1px solid var(--accent); border-radius:12px; font-size:1rem; font-weight:700; text-align:center; line-height:1.4; }
+  .rotate-tip small{ display:block; font-weight:500; color:var(--ink); font-size:.82rem; line-height:1.5; margin-top:3px; }
+  @media (orientation:landscape){ .rotate-tip{ display:none; } }
+  body.hc .rotate-tip small{ color:#16201E; }
+
+  .quick-sub{ flex:0 0 auto; font-size:.78rem; color:var(--muted); padding:3px 14px 0; }
+  body.hc .quick-sub{ color:#9aa; }
+
+  .quick-head{ flex:0 0 auto; display:flex; align-items:center; gap:8px; padding:8px 14px 0; }
+  .quick-head .qh-label{ font-size:.85rem; color:var(--muted); font-weight:700; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; min-width:0; }
+  .quick-head button{ flex:0 0 auto; }
   .quick-head button{ margin-left:auto; border:1px solid var(--line); background:var(--surface); color:var(--accent);
     height:34px; padding:0 14px; border-radius:10px; font-weight:700; font-size:.9rem; cursor:pointer; }
   .quick{ flex:0 0 auto; display:flex; gap:8px; overflow-x:auto; padding:8px 14px 2px; -webkit-overflow-scrolling:touch; }
@@ -66,8 +76,11 @@
     border:1px dashed var(--line); border-radius:12px; color:var(--muted); font-size:.85rem; text-align:center; padding:6px; }
 
   @media (max-height:470px){
-    .board{ min-height:54px; } #input{ height:46px; } .btn{ height:48px; }
-    .chip{ height:40px; } .adbox{ min-height:50px; }
+    body{ height:auto; min-height:100dvh; overflow-y:auto; }
+    .board{ flex:0 0 auto; height:80px; min-height:0; margin-top:4px; }
+    .quick-head{ padding-top:6px; } .quick{ padding-top:6px; }
+    .chip{ height:40px; } #input{ height:42px; } .controls{ padding-top:6px; }
+    .btn{ height:46px; } .adwrap{ padding-top:4px; } .adbox{ min-height:48px; }
   }
 
   /* high contrast */
@@ -114,12 +127,16 @@
     <button class="icon-btn" id="contrast" aria-pressed="false" aria-label="白黒反転">◐</button>
   </header>
 
+  <div class="rotate-tip">
+    📱 スマホは「横向き」がおすすめです
+    <small>端末を横に倒すと、文字がぐっと大きく・読みやすく表示されます。回らないときは、画面の自動回転をオン（iPhoneは回転ロックを解除）にしてください。</small>
+  </div>
+
   <main class="board" id="board">
     <div id="message" class="placeholder">文字を入力して「表示」を押すと、画面いっぱいに大きく出ます</div>
   </main>
-  <div class="tap-hint">↑ ここを押しても大きく表示できます　／　📱 横向きにするとさらに大きく見やすく表示できます</div>
 
-  <div class="quick-head"><span>よく使う言葉</span><button id="editBtn">✎ 編集</button></div>
+  <div class="quick-head"><span class="qh-label">よく使う言葉　→「✎ 編集」で変更できます</span><button id="editBtn">✎ 編集</button></div>
   <div class="quick" id="quick"></div>
 
   <div class="controls">
@@ -135,7 +152,9 @@
   <div class="adwrap">
     <div class="ad-label">広告</div>
     <div class="adbox" id="adbox">
-      広告スペース（この中に忍者AdMaxのタグを貼り付けてください）
+      <!-- admax -->
+      <script src="https://adm.shinobi.jp/s/f3bc65449bffd6e4f338619f55cdab0d"></script>
+      <!-- admax -->
     </div>
   </div>
 
